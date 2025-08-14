@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36327.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAppTestAutomation", "BlazorAppTestAutomation\BlazorAppTestAutomation.csproj", "{6B571403-8657-4E61-8C2F-9007C9FD37BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xUnitWithSelenium", "xUnitWithSelenium\xUnitWithSelenium.csproj", "{39B1736F-DBC8-4F45-9C03-8440C5D3AFAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6B571403-8657-4E61-8C2F-9007C9FD37BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B571403-8657-4E61-8C2F-9007C9FD37BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B571403-8657-4E61-8C2F-9007C9FD37BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B571403-8657-4E61-8C2F-9007C9FD37BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39B1736F-DBC8-4F45-9C03-8440C5D3AFAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39B1736F-DBC8-4F45-9C03-8440C5D3AFAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39B1736F-DBC8-4F45-9C03-8440C5D3AFAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39B1736F-DBC8-4F45-9C03-8440C5D3AFAC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D2B2BF93-E067-4164-8DF8-B39A37C89786}
+	EndGlobalSection
+EndGlobal

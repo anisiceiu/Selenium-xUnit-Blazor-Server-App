@@ -1,0 +1,113 @@
+﻿@page "/country-list"
+@inject ApplicationDbContext DbContext
+@using BlazorAppTestAutomation.Models
+@using Microsoft.EntityFrameworkCore
+@rendermode InteractiveServer
+
+<h3>Country List</h3>
+
+@if (countries == null)
+{
+    <p>Loading...</p>
+}
+else if (!countries.Any())
+{
+    <p>No countries found.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Continent</th>
+                <th>Country Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var country in countries)
+            {
+                <tr>
+                    <td>@country.Continent</td>
+                    <td>@country.CountryName</td>
+                    <td>
+                        <button @onclick="() => EditCountry(country)">Edit</button>
+                        <button @onclick="() => DeleteCountry(country.Id)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (editCountry != null)
+{
+    <h4>Edit Country</h4>
+    <EditForm Model="@editCountry" OnValidSubmit="SaveEdit">
+        <DataAnnotationsValidator />
+        <div>
+            <label>Continent: </label>
+            <InputText @bind-Value="editCountry.Continent" />
+        </div>
+        <div>
+            <label>Country Name: </label>
+            <InputText @bind-Value="editCountry.CountryName" />
+        </div>
+        <button type="submit">Save</button>
+        <button type="button" @onclick="CancelEdit">Cancel</button>
+    </EditForm>
+}
+
+@code {
+    private List<Country>? countries;
+    private Country? editCountry;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadCountries();
+    }
+
+    private async Task LoadCountries()
+    {
+        countries = await DbContext.Countries.ToListAsync();
+    }
+
+    private void EditCountry(Country country)
+    {
+        editCountry = new Country
+        {
+            Id = country.Id,
+            Continent = country.Continent,
+            CountryName = country.CountryName
+        };
+    }
+
+    private async Task SaveEdit()
+    {
+        var country = await DbContext.Countries.FindAsync(editCountry.Id);
+        if (country != null)
+        {
+            country.Continent = editCountry.Continent;
+            country.CountryName = editCountry.CountryName;
+            await DbContext.SaveChangesAsync();
+            editCountry = null;
+            await LoadCountries();
+        }
+    }
+
+    private void CancelEdit()
+    {
+        editCountry = null;
+    }
+
+    private async Task DeleteCountry(int id)
+    {
+        var country = await DbContext.Countries.FindAsync(id);
+        if (country != null)
+        {
+            DbContext.Countries.Remove(country);
+            await DbContext.SaveChangesAsync();
+            await LoadCountries();
+        }
+    }
+}

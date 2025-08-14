@@ -1,0 +1,39 @@
+﻿@page "/add-country"
+@inject ApplicationDbContext DbContext
+@using BlazorAppTestAutomation.Models
+@rendermode InteractiveServer
+
+<h3>Add Country</h3>
+
+<EditForm  FormName="AddCountryForm" Model="@country" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <label>Continent: </label>
+        <InputText @bind-Value="country.Continent" />
+    </div>
+    <div>
+        <label>Country Name: </label>
+        <InputText @bind-Value="country.CountryName" />
+    </div>
+    <button type="submit">Add Country</button>
+</EditForm>
+
+@if (successMessage != null)
+{
+    <p>@successMessage</p>
+}
+
+@code {
+    private Country country = new();
+    private string? successMessage;
+
+    private async Task HandleValidSubmit()
+    {
+        DbContext.Countries.Add(country);
+        await DbContext.SaveChangesAsync();
+        successMessage = "Country Added Successfully!";
+        country = new(); // Reset form
+    }
+}
