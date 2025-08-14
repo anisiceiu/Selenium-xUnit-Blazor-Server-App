@@ -14,7 +14,7 @@ A **Blazor Server application** with country management features and automated U
 - **Edit Country**: Edit existing country details inline.  
 - **Delete Country**: Delete a country with confirmation.  
 - **Async rendering** using Blazor Server and Entity Framework Core.
-- **"Ctrl + F5 then run Tests"**
+- **"Ctrl + F5 (Run Blazor App) then run Test or Debug xUnit"**
 
 ### Automated Tests
 - **xUnit + Selenium** tests for UI automation.  
